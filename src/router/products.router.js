@@ -5,6 +5,7 @@ router.get("/products", products.getProducts);
 router.get("/products/:id", products.getProduct);
 router.post("/products", products.create);
 router.patch("/products/:id", products.update);
+router.patch("/products/:id/picture", products.uploadPictureProduct);
 router.delete("/products/:id", products.remove);
 
 module.exports = router;

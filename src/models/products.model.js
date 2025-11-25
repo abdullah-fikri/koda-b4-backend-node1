@@ -2,11 +2,13 @@ let idProducts = 1;
 const products = [
     {
         id: idProducts++,
+        picture: null,
         name: "nasgor",
         price: 20000
     }, 
     {
         id: idProducts++,
+        picture: null,
         name: "mie",
         price: 1000
     }
@@ -34,12 +36,13 @@ function createProduct(name, price){
 }
 
 // update
-function updateProduct(id, name, price){
+function updateProduct(id, name, price, picture){
     const index = products.findIndex(item => item.id === id);
     if (index === -1) return null;
 
     products[index].name = name;
     products[index].price = price;
+    products[index].picture = picture
     return products[index];
 }
 

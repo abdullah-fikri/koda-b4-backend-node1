@@ -1,3 +1,4 @@
+const upload = require("../lib/upload");
 const {
     getAllProducts,
     getProductById,
@@ -25,13 +26,13 @@ function getProducts(req, res){
         results = results.sort((a, b) => b.price - a.price);
     }
 
-    if(results.length < 1){
-        res.status(401).json({
-            success: false,
-            message: "product not products"
-        });
-        return;
-    }
+    // if(results.length < 1){
+    //     res.status(401).json({
+    //         success: false,
+    //         message: "product not products"
+    //     });
+    //     return;
+    // }
 
     res.status(200).json({
         success: true,
@@ -88,6 +89,42 @@ function create(req, res){
     });
 }
 
+function uploadPictureProduct(req, res) {
+    const id = parseInt(req.params.id);
+    const product = getProductById(id);
+  
+    if (!product) {
+      return res.status(400).json({
+        success: false,
+        message: "product not found",
+      });
+    }
+  
+    upload.single("picture")(req, res, (err) => {
+      if (err) {
+        return res.status(400).json({
+          success: false,
+          message: err.message,
+        });
+      }
+  
+      if (!req.file) {
+        return res.status(400).json({
+          success: false,
+          message: "file not available",
+        });
+      }
+      const updated = updateProduct( id,product.name, product.price,req.file.filename)
+  
+      return res.status(200).json({
+        success: true,
+        message: "upload successfully",
+        result: updated,
+      });
+    });
+  }
+
+  
 /**
  * PUT /products/{id}
  * @summary update product
@@ -152,5 +189,6 @@ module.exports = {
     getProduct,
     create,
     update,
-    remove
+    remove,
+    uploadPictureProduct
 };

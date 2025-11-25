@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "express": "^5.1.0",
-    "express-jsdoc-swagger": "^1.8.0"
+    "express-jsdoc-swagger": "^1.8.0",
+    "multer": "^2.0.2"
   },
   "name": "minitask1",
   "version": "1.0.0",
