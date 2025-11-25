@@ -1,6 +1,19 @@
 const { registerModel } = require("../models/auth.model");
 const { loginModel } = require("../models/auth.model");
 
+/**
+ * POST /auth/register
+ * @summary register new user
+ * @tags auth
+ * @param {object} request.body.required - register payload
+ * @example request - example payload
+ * {
+ *   "fullName": "Abdullah Fikri",
+ *   "email": "fiki@mail.com",
+ *   "password": "123"
+ * }
+ * @returns {object} 200 - success response
+ */
 function authRegister(req, res){
     const { fullName, email, password } = req.body;
     const newUser = registerModel(fullName, email, password);
@@ -12,6 +25,19 @@ function authRegister(req, res){
     });
 }
 
+/**
+ * POST /auth/login
+ * @summary login user
+ * @tags auth
+ * @param {object} request.body.required - login payload
+ * @example request - example payload
+ * {
+ *   "email": "fiki@mail.com",
+ *   "password": "123"
+ * }
+ * @returns {object} 200 - login success
+ * @returns {object} 400 - wrong email or password
+ */
 function authLogin(req, res){
     const { email, password } = req.body;
     const user = loginModel(email, password);
