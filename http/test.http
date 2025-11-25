@@ -26,7 +26,7 @@ GET /products
 Host: localhost:9000
 
 ###
-GET /products/1
+GET /products/2
 Host: localhost:9000
 
 
@@ -49,10 +49,10 @@ Content-Type: application/json
 
 {
     "name": "indomie",
-    "price": "2000"
+    "price": 2000
 }
 
 /// delete products
 ###
-DELETE /products/2
+DELETE /products/3
 Host: localhost:9000
